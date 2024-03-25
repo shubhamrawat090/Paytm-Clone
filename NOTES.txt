@@ -1,0 +1,25 @@
+STEPS TO BOOTSTRAP THIS PROJECT 
+    1. Cloning the repo: https://github.com/100xdevs-cohort-2/paytm-project-starter-monorepo 
+    2. npm install (in the root folder) 
+    3. cd packages/db 
+    4. Adding a .env file with the database url, getting a database from neon.tech/aiven/docker 
+    5. npx prisma migrate dev 
+    6. npx prisma generate 
+    7. Add .env file to app/user-app 
+    8. npm run dev (in app/user-app)
+
+PRISMA COMMANDS
+    npx prisma studio (in packages/db) -> to get a UI based representation of your tables. CAN RE-RUN THIS AFTER npx prisma generate TO CONFIRM THE NEW CHANGES
+    npx prisma migrate dev --name added_balances_and_onramp (in packages/db) (--name is optional but a good practice) -> Run whenever you update the schema.prisma
+    npx prisma generate (in packages/db) -> ALWAYS regenerate the client after running npx prisma migrate
+
+DOCKER COMMANDS
+    docker run -e POSTGRES_PASSWORD={any_secret_password} -d -p 5432:5432 postgres -> run postgres container locally
+    docker ps -> get your running container info -> get the containerID from here
+    docker exec -it {containerID} /bin/bash -> to open terminal for running sql commands in your container
+
+INSIDE CONTAINER TERMINAL
+    psql -U postgres -> opens the postgres terminal -- Here you can run SQL queries on you tables
+    \q -> exit out of postgres terminal
+    exit -> exit out of container terminal
+    \dt; -> shows you created tables info
